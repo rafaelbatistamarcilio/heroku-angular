@@ -1,15 +1,12 @@
 const express = require('express');
 const path = require('path');
-// const compression = require('compression');
+const compression = require('compression');
 
 const app = express();
 
-// app.use(compression());
+app.use(compression());
 
-// If an incoming request uses
-// a protocol other than HTTPS,
-// redirect that request to the
-// same url but with HTTPS
+// FORCE HTTPS
 const forceSSL = function () {
   return function (req, res, next) {
     if (req.headers['x-forwarded-proto'] !== 'https') {
@@ -20,9 +17,6 @@ const forceSSL = function () {
     next();
   }
 }
-// Instruct the app
-// to use the forceSSL
-// middleware
 app.use(forceSSL());
 
 
