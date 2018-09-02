@@ -6,11 +6,14 @@ const app = express();
 
 // app.use(compression());
 
+//use logger
+app.use(express.logger());
+
 // Serve only the static files form the dist directory
 app.use(express.static('./dist'));
 
 //body parsing middleware (for json, urlencoded, and multipart responses)
-app.use(express.bodyParser());
+//app.use(express.bodyParser());
 
 //handle any errors
 app.use(function(err, req, res, next){
