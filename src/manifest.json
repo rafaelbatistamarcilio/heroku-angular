@@ -1,7 +1,7 @@
 {
   "name": "heroku-client",
   "short_name": "RBM PWA",
-  "theme_color": "#1976d2",
+  "theme_color": "#060606",
   "background_color": "#060606",
   "display": "standalone",
   "scope": "/",
