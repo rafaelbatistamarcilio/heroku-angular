@@ -16,10 +16,10 @@ app.use(express.static('./dist'));
 //app.use(express.bodyParser());
 
 //handle any errors
-app.use(function(err, req, res, next){
-  console.error(err.stack);
-  res.send(500, err);
-});
+// app.use(function(err, req, res, next){
+//   console.error(err.stack);
+//   res.send(500, err);
+// });
 
 
 app.get('/*', (req, res) => {
