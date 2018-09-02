@@ -7,7 +7,7 @@ const app = express();
 // app.use(compression());
 
 //use logger
-app.use(express.logger());
+// app.use(express.logger());
 
 // Serve only the static files form the dist directory
 app.use(express.static('./dist'));
@@ -22,7 +22,7 @@ app.use(express.static('./dist'));
 // });
 
 
-app.get('/*', (req, res) => {
+app.get('/*', function(req, res) {
   res.sendFile(path.join('./dist/index.html'));
 });
 
