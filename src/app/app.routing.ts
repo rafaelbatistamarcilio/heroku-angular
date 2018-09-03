@@ -7,6 +7,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
 const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: '404', component: NotFoundComponent },
+    {
+        path: 'photos',
+        loadChildren: './photos/photos.module#PhotosModule'
+    },
 
     { path: '', redirectTo: '/home', pathMatch: 'full' },
 

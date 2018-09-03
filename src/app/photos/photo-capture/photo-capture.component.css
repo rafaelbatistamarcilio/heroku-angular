@@ -1,0 +1,10 @@
+
+.picture-container{
+    min-height: 20em;
+}
+
+@media screen and (min-width: 600px) {
+    .picture-container{
+        min-height: 28em;
+    }
+}

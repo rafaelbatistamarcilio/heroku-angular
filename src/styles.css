@@ -9,3 +9,7 @@ body {
   -moz-box-shadow: 0 6px 4px -4px black;
   box-shadow: 0 6px 4px -4px black;
 }
+
+.vs-0-5{
+  margin-top: 0.5em
+}
