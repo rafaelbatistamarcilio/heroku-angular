@@ -1,8 +1,23 @@
-<p>
-  photo-list works!
-</p>
+<div class="row">
+  <div class="col-6">
+    <h3 class="one">My Photos</h3>
+  </div>
+  <div class="col-6">
+    <button type="button" class="btn btn-primary float-right" routerLink="new"> New Photo</button>
+  </div>
+</div>
 
+<div class="card shadow picture-container vs-0-5">
+  <div class="card-body">
+    <ul class="list-unstyled">
+      <li class="media vs-0-5" *ngFor="let photo of photoService.photos">
 
-<p>
-  <a routerLink="new"> New Photo</a>
-</p>
+        <div class="media-body">
+          <h5 class="mt-0 mb-1">{{photo.description}}</h5>
+          {{photo.captureDate | date:'dd/MM/yyyy HH:mm:ss'}}
+        </div>
+        <img class="mr-3 rounded-circle" width="64" height="64" [src]="photo.imageData" alt="Generic placeholder image">
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,4 +1,6 @@
 import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
+import Photo from '../photo.model';
+import { PhotosService } from '../photos.service';
 
 @Component({
   selector: 'app-photo-capture',
@@ -8,10 +10,11 @@ import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular
 export class PhotoCaptureComponent implements OnInit {
 
   isMobile: boolean;
-  photo: string;
+  photo: Photo;
 
-  constructor() {
-    this.photo = 'https://image.flaticon.com/icons/svg/23/23765.svg';
+  constructor(private photoService: PhotosService) {
+    this.photo = new Photo();
+    this.photo.imageData = 'https://image.flaticon.com/icons/svg/23/23765.svg';
 
   }
 
@@ -34,23 +37,19 @@ export class PhotoCaptureComponent implements OnInit {
     input.accept = 'image';
     input.capture = 'camera';
     input.click();
+    input.onchange = (event: any) => this.extractImage(event.target.files[0]);
+  }
 
-    input.onchange = (event: any) => {
-      const file = event.target.files[0];
-      // Do something with the image file.
+  extractImage(file) {
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => this.photo.imageData = e.target.result;
+      this.photo.captureDate = new Date();
+      reader.readAsDataURL(file);
+    }
+  }
 
-      if (file) {
-
-        const reader = new FileReader();
-
-        reader.onload = (e: any) => {
-          this.photo = e.target.result;
-          console.log(e.target.result);
-        };
-
-        reader.readAsDataURL(file);
-      }
-
-    };
+  savePhoto() {
+    this.photoService.addPhoto(this.photo);
   }
 }

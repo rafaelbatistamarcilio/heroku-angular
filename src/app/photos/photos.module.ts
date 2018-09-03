@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { PhotoCaptureComponent } from './photo-capture/photo-capture.component';
 import { PhotoListComponent } from './photo-list/photo-list.component';
 import { PhotosRouting } from './photos.routing';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    PhotosRouting
+    PhotosRouting,
+    FormsModule
   ],
   declarations: [PhotoCaptureComponent, PhotoListComponent]
 })
