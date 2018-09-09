@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import * as io from 'socket.io-client';
 @Component({
@@ -20,7 +21,7 @@ export class ConversationsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.socket = io('http://localhost:3001');
+    this.socket = io(environment.API.CHAT_WS);
 
     this.socket.on('connect', () => {
       console.log('Connected');
