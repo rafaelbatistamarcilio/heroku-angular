@@ -1,0 +1,23 @@
+<div #messageContainer  style="margin-bottom: 50px">
+  <div class="card shadow vs-0-5" *ngFor="let message of messages">
+    <div class="card-body">
+      <div class="media-body">
+        <h5 class="mt-0 mb-1">{{message.detail}}</h5>
+        {{message.date | date:'dd/MM/yyyy HH:mm:ss'}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="fixed-bottom">
+  <div class="row vs-0-5">
+    <div class="col">
+      <div class="input-group vs-0-5">
+        <input type="text" class="form-control" placeholder="Write a message" [(ngModel)]="message">
+        <div class="input-group-append">
+          <button class="btn btn-primary" (click)="sendMessage()"> Send </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

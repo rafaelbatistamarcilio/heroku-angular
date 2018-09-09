@@ -11,6 +11,10 @@ const routes: Routes = [
         path: 'photos',
         loadChildren: './photos/photos.module#PhotosModule'
     },
+    {
+        path: 'chat',
+        loadChildren: './chat/chat.module#ChatModule'
+    },
 
     { path: '', redirectTo: '/home', pathMatch: 'full' },
 
