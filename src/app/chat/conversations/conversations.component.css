@@ -1,0 +1,14 @@
+.message-container{
+    position: absolute; 
+    top:0px;
+    height: 80%; 
+    width: 100%;
+    margin: 10px auto;
+    padding: 50px 10px;
+    background-color: red;
+    overflow: scroll;
+}
+
+.message-divider{
+    height: 50px;
+}

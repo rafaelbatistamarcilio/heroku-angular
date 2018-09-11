@@ -29,6 +29,7 @@ export class ConversationsComponent implements OnInit {
       this.socket.on('chat-message', (data: { detail: string, date: Date }[]) => {
         console.log('messages recieved', data);
         this.messages = data;
+        this.scrollToLastMessage();
       });
     });
 
@@ -39,12 +40,33 @@ export class ConversationsComponent implements OnInit {
     this.socket.on('disconnect', () => {
       console.log('Disconnected');
     });
+
   }
 
   sendMessage() {
     this.messages.push({ detail: this.message, date: new Date() });
     this.socket.emit('chat-message', { detail: this.message, date: new Date() });
     this.message = '';
+    this.scrollToLastMessage();
   }
 
+  async scrollToLastMessage() {
+    const scrollInterval = this.messages.length > 0 ? this.messages.length - 5 : 0;
+    this.scrollMessages(scrollInterval);
+  }
+
+  async getMessageHeight(): Promise<number> {
+    return new Promise<number>((resolve, reject) => {
+      setTimeout(() => {
+        const messages = Array.from(this.messageContainer.nativeElement.querySelectorAll('.card')) as HTMLDivElement[];
+        const height: number = messages.length > 0 ? (messages[messages.length - 1].scrollHeight) + 10 : 0;
+        resolve(height);
+      }, 1000);
+    });
+  }
+
+  async scrollMessages(numberOfMessagesToScroll) {
+    const height = await this.getMessageHeight();
+    window.scrollTo({ top: height * numberOfMessagesToScroll });
+  }
 }
